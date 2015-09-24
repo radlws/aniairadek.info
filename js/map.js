@@ -1,0 +1,4 @@
+document.write('<div class="news-bar-item-line1">MAP</div>'
+    +'<div class="news-bar-item-line2">LOCATION</div>'
+    +'<iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=137+Emerald+St+S,+Hamilton,+ON&amp;aq=0&amp;oq=137+E&amp;sll=49.303974,-84.738438&amp;sspn=17.182958,39.506836&amp;ie=UTF8&amp;hq=&amp;hnear=137+Emerald+St+S,+Hamilton,+Ontario+L8N+2V4&amp;t=m&amp;z=14&amp;ll=43.248877,-79.856029&amp;output=embed"></iframe>'
+    +'<br /><small><a href="https://maps.google.ca/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=137+Emerald+St+S,+Hamilton,+ON&amp;aq=0&amp;oq=137+E&amp;sll=49.303974,-84.738438&amp;sspn=17.182958,39.506836&amp;ie=UTF8&amp;hq=&amp;hnear=137+Emerald+St+S,+Hamilton,+Ontario+L8N+2V4&amp;t=m&amp;z=14&amp;ll=43.248877,-79.856029" style="color:#0000FF;text-align:left">View Larger Map</a></small>');
