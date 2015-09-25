@@ -55,18 +55,18 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                    <!--<li>-->
+                        <!--<a class="page-scroll" href="#page-top">Top</a>-->
+                    <!--</li>-->
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#gallery">Gallery</a>
+                        <a class="page-scroll" href="#details">Details</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#rsvp">RSVP</a>
                     </li>
-                    <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
-                    </li>
+                    <!--<li>-->
+                        <!--<a class="page-scroll" href="#contact">Contact</a>-->
+                    <!--</li>-->
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -411,12 +411,12 @@
 
     <!-- Contact Section -->
     <!--
-    <section id="contact">
+    <section id="rsvp">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact Us</h2>
-                    <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+                    <h2 class="section-heading">RSVP</h2>
+                    <h3 class="section-subheading text-muted">Please fill in our RSVP - Prosze wyslac nam RSVP</h3>
                 </div>
             </div>
             <div class="row">
@@ -425,28 +425,43 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" required data-validation-required-message="Please enter your name.">
+                                    <label for="name" class="control-label">Guest Names - Imiona</label>
+                                    <input type="text" class="form-control" placeholder="Guest Names - Imie Gosci e.g. Radek Wojcik, Ania Wojcik *" id="name" required data-validation-required-message="Please enter guest names.">
                                     <p class="help-block text-danger"></p>
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" required data-validation-required-message="Please enter your email address.">
+                                    <label for="email" class="control-label">Email</label>
+                                    <input type="email" class="form-control" placeholder="Email *" id="email" required data-validation-required-message="Please enter your email address.">
                                     <p class="help-block text-danger"></p>
                                 </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
+
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+                                    <label for="no_guests" class="control-label">Total Number of Guests - Numer Gości</label>
+                                    <select class="form-control" id="no_guests" required data-validation-required-message="Please enter the number of guests.">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
                                     <p class="help-block text-danger"></p>
                                 </div>
+                                <div class="form-group">
+                                    <label for="attending" class="control-label">Attending - Obecność</label>
+                                    <select class="form-control" id="attending">
+                                        <option>Yes</option>
+                                        <option>No</option>
+                                    </select>
+                                    <p class="help-block text-danger"></p>
+                                </div>
+
                             </div>
                             <div class="clearfix"></div>
                             <div class="col-lg-12 text-center">
                                 <div id="success"></div>
-                                <button type="submit" class="btn btn-xl">Send Message</button>
+                                <button type="submit" class="btn btn-xl">Send RSVP</button>
                             </div>
                         </div>
                     </form>
@@ -455,6 +470,16 @@
         </div>
     </section>
     -->
+    <!--
+    <div class="form-group">
+
+        <textarea class="form-control" placeholder="Your Message *" id="message" required data-validation-required-message="Please enter a message."></textarea>
+        <p class="help-block text-danger"></p>
+
+    </div>-->
+    <!--<input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">-->
+    <!--<input type="number" class="form-control" placeholder="Number of guests, including yourself - Numer gosci *" id="no_guests" required data-validation-required-message="Please enter the number of guests.">-->
+
     <footer>
         <div class="container">
             <div class="row">
