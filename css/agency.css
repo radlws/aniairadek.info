@@ -327,9 +327,9 @@ section {
     padding: 100px 0px 0px;
 }
 
-section#details {
-    padding: 100px 0;
-}
+/*section#details {*/
+    /*padding: 100px 0;*/
+/*}*/
 
 section h2.section-heading {
     margin-top: 0;
@@ -351,9 +351,9 @@ section h3.section-subheading {
         padding: 150px 0px 0px;
 
     }
-    section#details {
-        padding: 150px 0;
-    }
+    /*section#details {*/
+        /*padding: 150px 0;*/
+    /*}*/
 }
 
 .service-heading {
