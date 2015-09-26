@@ -664,7 +664,7 @@ aside.clients img {
 
 section#rsvp {
     background-color: #222;
-    background-image: url(../img/map-image.png);
+    background-image: url(../img/rsvp-image.jpg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -894,7 +894,7 @@ label {
 }
 
 section h3.section-subheading.text-muted{
-    margin-bottom: 0;
+    margin-bottom: 25px;
 }
 .scrolloff {
         pointer-events: none;
@@ -974,4 +974,10 @@ section h3.section-subheading.text-muted{
 .no-gutter > [class*=col-] {
     padding-right: 0;
     padding-left: 0;
+}
+
+.page-scroll.btn.btn-xl.btn-details {
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
 }
