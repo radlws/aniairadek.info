@@ -980,6 +980,11 @@ section h3.section-subheading.text-muted{
     padding-left: 0;
 }
 
+.no-gutter {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
 .page-scroll.btn.btn-xl.btn-details {
     color: transparent;
     background-color: transparent;
