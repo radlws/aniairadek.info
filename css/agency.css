@@ -917,6 +917,10 @@ section h3.section-subheading.text-muted{
     max-width: 650px;
 }
 
+.portfolio-box img{
+    width: 100%;
+}
+
 .portfolio-box .portfolio-box-caption {
     display: block;
     position: absolute;
