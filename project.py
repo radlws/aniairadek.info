@@ -1,9 +1,24 @@
-from flask import Flask
-application = Flask(__name__)
+# import os
+from flask import Flask # , redirect, url_for
 
-@application.route("/")
-def hello():
-    return "<h1 style='color:blue'>Hello There!</h1>"
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+@app.route('/')
+def hello_world():
+    return 'Hello World!'
+
+@app.route('/api', methods=['GET', 'POST'])
+def new():
+    return 'hello world'
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # u = request.url_rule
+    # return "this page not found %s" % u.rule, 404
+    return 'this page not found', 404
+    # return flask.redirect('http://aniairadek.info', code=302)
+    # return redirect(url_for('hello_world'))
+
+if __name__ == '__main__':
+    #app.debug = True
+    app.run()
