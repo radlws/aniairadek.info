@@ -20,7 +20,7 @@ rsvp_app.config.from_object('settings')  # Load from settings.py module
 
 mail = Mail(rsvp_app)
 db = SQLAlchemy(rsvp_app)
-CORS(rsvp_app)
+# CORS(rsvp_app)  # allow all origins
 
 # from flask_mail import Message
 # from sqlalchemy import func

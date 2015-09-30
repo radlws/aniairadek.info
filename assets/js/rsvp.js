@@ -25,7 +25,7 @@ $(function() {
 
             $.ajax({
                 //url: "/api",
-                url: "http://127.0.0.1:5000/api",
+                url: "/api",
                 type: "POST",
                 data: JSON.stringify(data_arr),
                 cache: false,
