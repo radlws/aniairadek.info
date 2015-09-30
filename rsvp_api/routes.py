@@ -18,7 +18,7 @@ rsvp_app = Flask(__name__)
 mail = Mail(rsvp_app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-rsvp_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+rsvp_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'rsvp.db')  # 'sqlite:////tmp/test.db'
 rsvp_app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repository')
 
 db = SQLAlchemy(rsvp_app)
