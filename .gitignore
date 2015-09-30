@@ -1,4 +1,5 @@
 .DS_Store
 .idea/
 *.pyc
+#rsvp.db
 settings_local.py
