@@ -32,19 +32,21 @@ from sqlalchemy import func
 
 class RSVPEntry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    no_guests = db.Column(db.Integer, unique=False, index=False)
     names = db.Column(db.String(255), index=False, unique=False)
     email = db.Column(db.String(120), index=True, unique=True)
-    is_attending = db.Column(db.Boolean, unique=False, default=True)
+    attending = db.Column(db.Boolean, unique=False, default=True)
     is_active = db.Column(db.Boolean, unique=False, default=True)
     created = db.Column(db.DateTime, nullable=False, server_default=func.now())
     modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     food_message = db.Column(db.Text, index=False, unique=False)
     address = db.Column(db.Text, index=False, unique=False)
 
-    def __init__(self, names, email, is_attending=True, is_active=False, food_message="", address=""):
+    def __init__(self, names, email, attending=True, no_guests=0, is_active=False, food_message="", address=""):
         self.names = names
         self.email = email
-        self.is_attending = is_attending
+        self.attending = attending
+        self.no_guests = no_guests
         self.is_active = is_active
         self.food_message = food_message
         self.address = address
@@ -72,7 +74,10 @@ def post_rsvp():
     if not names:
         return jsonify(msg="Sorry, please provide at least one name.", success=False)
 
-    rsvp_entry = RSVPEntry(names=names, email=email)
+    attending = data.get('attending')
+    no_guests = data.get('no_guests')
+
+    rsvp_entry = RSVPEntry(names=names, email=email, attending=attending, no_guests=no_guests)
     db.session.add(rsvp_entry)
     try:
         db.session.commit()
@@ -83,7 +88,10 @@ def post_rsvp():
 
     # Send out an emails
     try:
-        msg = Message("RSVP Notification", sender="radzhome@radtek.dev",  body="Somebody has RSVPed",
+        body = "Somebody has RSVPed. Names: {names}. Email: {email}. No Guests: {no_guests}. Attending {attending}"
+        body = body.format(names=names, email=email, no_guests=no_guests, attending=attending)
+
+        msg = Message("RSVP Request", sender="radzhome@radtek.dev",  body=body,
                       recipients=["radzhome@gmail.com", "annabkatarzyna@gmail.com"], )
         mail.send(msg)
 
