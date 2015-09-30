@@ -7,7 +7,7 @@ from flask_mail import Message
 
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-from flask.ext.cors import CORS
+#from flask.ext.cors import CORS
 
 from flask import request
 from flask import jsonify
@@ -22,16 +22,6 @@ mail = Mail(rsvp_app)
 db = SQLAlchemy(rsvp_app)
 # CORS(rsvp_app)  # allow all origins
 
-# from flask_mail import Message
-# from sqlalchemy import func
-
-#from models import RSVPEntry
-
-# from rsvp_app import models
-# from rsvp_app import views
-
-# from flask.ext.sqlalchemy import SQLAlchemy
-# db = SQLAlchemy(app)
 
 # MODELS
 
@@ -68,11 +58,9 @@ def hello_world():
     # This route will not be available, only api will be
     return 'Hello World!'
 
-#from crossdomain import crossdomain
-
 @rsvp_app.route('/api', methods=['POST'])
 def post_rsvp():
-
+    logging.info("Entering post rsvp")
     data = request.get_json(force=True)
 
     email = data.get('email')
@@ -88,6 +76,8 @@ def post_rsvp():
         db.session.commit()
     except IntegrityError:
         return jsonify(msg="Sorry this email was already used.", success=False)
+    except Exception as e:
+        logging.error("Something went wrong while writing to db {0}".format(e))
 
     # Send out an emails
     try:
@@ -99,7 +89,7 @@ def post_rsvp():
                       recipients=[email, ], )
         mail.send(msg)
     except Exception as e:
-        logging.error("Something went wrong while sending emails {}".format(e))
+        logging.error("Something went wrong while sending emails {0}".format(e))
 
     return jsonify(success=True, msg="RSVP created successfully")
 
