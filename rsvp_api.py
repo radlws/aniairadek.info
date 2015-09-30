@@ -10,7 +10,8 @@ app.config.from_object('settings')  # Load from settings.py module
 mail = Mail(app)
 db = SQLAlchemy(app)
 
-#from app import views, models
+#from  import views, models
+#from models import RSVPEntry
 
 @app.route('/')
 def hello_world():
@@ -19,10 +20,16 @@ def hello_world():
 
 @app.route('/api', methods=['GET', 'POST'])
 def new():
-    msg = Message("Hello",
-                  sender="radzhome@radtek.dev",
-                  recipients=["radzhome@gmail.com"])
-    mail.send(msg)
+    # TODO: configure the email out stuff if req.
+    #msg = Message("Hello",
+    #              sender="radzhome@radtek.dev",
+    #              recipients=["radzhome@gmail.com"])
+    #mail.send(msg)
+
+    #rsvp_entry = RSVPEntry(names='One Two Three Names', email='radzhome@gmail.com')
+    #db.session.add(rsvp_entry)
+    #db.session.commit()
+
     return 'hello world'
 
 @app.errorhandler(404)
