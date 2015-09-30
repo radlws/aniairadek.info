@@ -1,4 +1,4 @@
-from project import app as application
+from rsvp_api import app as application
 
 if __name__ == "__main__":
     application.run()
