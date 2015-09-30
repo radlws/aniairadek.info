@@ -1,24 +1,26 @@
 import logging
+import os
 
 from flask import Flask
-
 from flask_mail import Mail
 from flask_mail import Message
-
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
-#from flask.ext.cors import CORS
-
+# from flask.ext.cors import CORS
 from flask import request
 from flask import jsonify
-from flask import json
+# from flask import json
 
 from validate_email import validate_email
 
 rsvp_app = Flask(__name__)
-rsvp_app.config.from_object('settings')  # Load from settings.py module
-
+# rsvp_app.config.from_object('settings')  # Load from settings.py module
 mail = Mail(rsvp_app)
+
+basedir = os.path.abspath(os.path.dirname(__file__))
+rsvp_app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+rsvp_app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repository')
+
 db = SQLAlchemy(rsvp_app)
 # CORS(rsvp_app)  # allow all origins
 
