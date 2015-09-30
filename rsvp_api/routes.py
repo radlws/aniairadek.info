@@ -84,7 +84,7 @@ def post_rsvp():
     # Send out an emails
     try:
         msg = Message("RSVP Notification", sender="radzhome@radtek.dev",  body="Somebody has RSVPed",
-                      recipients=["radzhome@gmail.com", "aniabkatarzyna@gmail.com"], )
+                      recipients=["radzhome@gmail.com", "annabkatarzyna@gmail.com"], )
         mail.send(msg)
 
         msg = Message("RSVP Notification", sender="radzhome@radtek.dev",  body="Thank you, your RSVP was received.",
