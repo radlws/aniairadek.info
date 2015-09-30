@@ -930,7 +930,7 @@ section h3.section-subheading.text-muted{
     text-align: center;
     color: #fff;
     opacity: 0;
-    background: rgba(245, 192, 233, 0.90);
+    background: rgba(245, 192, 233, 0.40);
     -webkit-transition: all .35s;
     -moz-transition: all .35s;
     transition: all .35s;
