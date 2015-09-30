@@ -267,7 +267,7 @@ header {
     text-align: center;
     color: #fff;
     background-attachment: scroll;
-    background-image: url(../img/header-bg3.jpg);
+    background-image: url(../../img/header-bg3.jpg);
     background-position: center center;
     background-repeat: none;
     -webkit-background-size: cover;
@@ -664,7 +664,7 @@ aside.clients img {
 
 section#rsvp {
     background-color: #222;
-    background-image: url(../img/rsvp-image.jpg);
+    background-image: url(../../img/rsvp-image.jpg);
     background-position: center;
     background-repeat: no-repeat;
 }
@@ -989,4 +989,8 @@ section h3.section-subheading.text-muted{
     color: transparent;
     background-color: transparent;
     border-color: transparent;
+}
+
+.padding-bottom-20{
+    padding-bottom: 20px;
 }
