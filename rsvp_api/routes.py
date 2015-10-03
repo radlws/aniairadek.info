@@ -76,6 +76,9 @@ def post_rsvp():
 
     attending = data.get('attending')
     no_guests = data.get('no_guests')
+    
+    address = data.get('address')
+    food_message = data.get('food_message')
 
     rsvp_entry = RSVPEntry(names=names, email=email, attending=attending, no_guests=no_guests, 
                            food_message=food_message, address=address)
