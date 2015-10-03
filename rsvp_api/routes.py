@@ -77,7 +77,9 @@ def post_rsvp():
     attending = data.get('attending')
     no_guests = data.get('no_guests')
 
-    rsvp_entry = RSVPEntry(names=names, email=email, attending=attending, no_guests=no_guests)
+    rsvp_entry = RSVPEntry(names=names, email=email, attending=attending, no_guests=no_guests, 
+                           food_message=food_message, address=address)
+                           
     db.session.add(rsvp_entry)
     try:
         db.session.commit()
@@ -88,8 +90,10 @@ def post_rsvp():
 
     # Send out an emails
     try:
-        body = "Somebody has RSVPed. Names: {names}. Email: {email}. No Guests: {no_guests}. Attending {attending}"
-        body = body.format(names=names, email=email, no_guests=no_guests, attending=attending)
+        body = "Somebody has RSVPed. Names: {names}. Email: {email}. No Guests: {no_guests}. Attending {attending}." + \
+               "Food Message {food_message}. Address {address}."
+        body = body.format(names=names, email=email, no_guests=no_guests, attending=attending, 
+                           food_message=food_message, address=address)
 
         msg = Message("RSVP Request", sender="radzhome@radtek.dev",  body=body,
                       recipients=["radzhome@gmail.com", "annabkatarzyna@gmail.com"], )
