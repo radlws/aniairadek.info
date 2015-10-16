@@ -89,6 +89,8 @@ def send_rsvps():
                                         email=u.email)
             send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
+    return jsonify(success=True, msg="RSVPs all sent")
+
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
     email = request.args.get('email', '').replace('%2B', '+')  # %40 = @
