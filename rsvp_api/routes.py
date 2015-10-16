@@ -56,12 +56,28 @@ class RSVPEntry(db.Model):
         return '<RSVPEntry %r>' % self.email
 
 
+def send_email(subject, sender, recipients, text_body, html_body):
+    msg = Message(subject, sender=sender, recipients=recipients)
+    msg.body = text_body
+    msg.html = html_body
+    mail.send(msg)
+
+# CONSTANTS .. move to config
+FROM_EMAIL = "do-not-reply@radtek.dev"
+ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
+
 # ROUTES
 
-@rsvp_app.route('/')
-def hello_world():
-    # This route will not be available, only api will be
-    return 'Hello World!'
+# @rsvp_app.route('/')
+# def hello_world():
+#     # This route will not be available, only api will be
+#     return 'Hello World!'
+
+
+@rsvp_app.route('/test_email')
+def test_template():
+    send_email("This is a test", FROM_EMAIL, ADMIN_EMAILS, render_template("rsvp_email.txt", name="this is a test"),
+               render_template("rsvp_email.html", name="this is a test", follower="ok"))
 
 @rsvp_app.route('/api', methods=['POST'])
 def post_rsvp():
@@ -100,13 +116,17 @@ def post_rsvp():
         body = body.format(names=names, email=email, no_guests=no_guests, attending=attending, 
                            food_message=food_message, address=address)
 
-        msg = Message("RSVP Request", sender="radzhome@radtek.dev",  body=body,
-                      recipients=["radzhome@gmail.com", "annabkatarzyna@gmail.com"], )
+        msg = Message("RSVP Request", sender=FROM_EMAIL,  body=body, recipients=ADMIN_EMAILS, )
         mail.send(msg)
 
-        msg = Message("RSVP Notification", sender="radzhome@radtek.dev",  body="Thank you, your RSVP was received.",
-                      recipients=[email, ], )
-        mail.send(msg)
+        html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message)
+        txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message)
+
+        send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
+
+        #msg = Message("RSVP Notification", sender=FROM_EMAIL,  body="Thank you, your RSVP was received.",
+        #              recipients=[email, ], )
+        #mail.send(msg)
     except Exception as e:
         logging.error("Something went wrong while sending emails {0}".format(e))
 
