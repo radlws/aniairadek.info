@@ -261,7 +261,9 @@ fieldset[disabled] .btn-xl.active {
     }
 }
 
-
+a.purple-link{
+    color: #59093e;
+}
 
 header {
     text-align: center;
