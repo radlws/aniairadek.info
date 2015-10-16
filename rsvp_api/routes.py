@@ -25,6 +25,13 @@ rsvp_app.config['SQLALCHEMY_MIGRATE_REPO'] = os.path.join(basedir, 'db_repositor
 db = SQLAlchemy(rsvp_app)
 # CORS(rsvp_app)  # allow all origins
 
+# LOGGING
+
+logging.basicConfig(filename='/tmp/aniairadek.log',
+                    level=logging.INFO,
+                    format=('%(asctime)s %(name)s@{}[%(process)d] '.format(os.getenv('HOSTNAME')) +
+                            '%(levelname)-8s %(message)s' + '    [in %(pathname)s:%(funcName)s:%(lineno)d]'),
+                    datefmt='%m-%d %H:%M')
 
 # MODELS
 
@@ -76,8 +83,18 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 @rsvp_app.route('/test_email')
 def test_template():
-    send_email("This is a test", FROM_EMAIL, ADMIN_EMAILS, render_template("rsvp_email.txt", name="this is a test"),
-               render_template("rsvp_email.html", name="this is a test", follower="ok"))
+    logging.info("This is a test...")
+    no_guests = 1
+    names = "Radek, Bartek, Ania, Michal"
+    food_message = "I'm a veggie"
+    email = ADMIN_EMAILS[0]
+    html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message)
+    txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message)
+
+    send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
+    # send_email("This is a test", FROM_EMAIL, ADMIN_EMAILS, render_template("rsvp_email.txt", name="this is a test"),
+    #            render_template("rsvp_email.html", name="this is a test", follower="ok"))
+    return 'good'
 
 @rsvp_app.route('/api', methods=['POST'])
 def post_rsvp():
@@ -142,4 +159,4 @@ def page_not_found(e):
     # return redirect(url_for('hello_world'))
 
 if __name__ == '__main__':
-    rsvp_app.run(debug=True)
+    rsvp_app.run(debug=False)
