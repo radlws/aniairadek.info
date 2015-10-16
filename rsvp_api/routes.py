@@ -83,10 +83,10 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
-    email = request.args.get('email', '') # .replace('%20', '+')
+    email = request.args.get('email', '').replace('%2B', '+')  # %40 = @
     success = True
     if not email or not validate_email(email):
-        message = "Sorry, the email specified was not valid. {0}".format(email)
+        message = "Sorry, the email specified was not valid."  # {0}".format(email)
         success = False
     else:
         rsvp = RSVPEntry.query.filter_by(email=email).first()
@@ -160,7 +160,7 @@ def post_rsvp():
         mail.send(msg)
 
         html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message,
-                                     email=email.replace('+', '%20'))  # url encode
+                                     email=email.replace('+', '%2B'))  # url encode
         txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message,
                                     email=email)
 
