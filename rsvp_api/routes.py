@@ -12,6 +12,7 @@ from flask import jsonify
 # from flask import json
 
 from validate_email import validate_email
+from flask import render_template
 
 rsvp_app = Flask(__name__)
 # rsvp_app.config.from_object('settings')  # Load from settings.py module
@@ -82,7 +83,8 @@ def post_rsvp():
     try:
         db.session.commit()
     except IntegrityError:
-        return jsonify(msg="Sorry this email was already used.", success=False)
+        return jsonify(msg="Sorry this email was already used. To change your RSVP, email radzhome@gmail.com",
+                       success=False)
     except Exception as e:
         logging.error("Something went wrong while writing to db {0}".format(e))
 
