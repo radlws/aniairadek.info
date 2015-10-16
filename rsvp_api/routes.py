@@ -87,6 +87,7 @@ def send_rsvps():
             txt_email = render_template("rsvp_email.txt", no_guests=u.no_guests, names=u.names,
                                         food_message=u.food_message,
                                         email=u.email)
+            logging.info("Attempting to send email to {0}".format(u.email))
             send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
     return jsonify(success=True, msg="RSVPs all sent")
