@@ -75,7 +75,7 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
 
-@rsvp_app.route('/send_rsvp_emails', methods=['GET'])
+@rsvp_app.route('/api/send_rsvp_emails', methods=['GET'])
 def send_rsvps():
     """Local use, sends emails to everyone"""
     users = RSVPEntry.query.all()
