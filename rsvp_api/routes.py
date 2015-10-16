@@ -86,7 +86,7 @@ def get_confirm():
     email = request.args.get('email', '').replace('%20', '+')
     success = True
     if not email or not validate_email(email):
-        message = "Sorry, the email specified was not valid."
+        message = "Sorry, the email specified was not valid. {}".format(email)
         success = False
     else:
         rsvp = RSVPEntry.query.filter_by(email=email).first()
