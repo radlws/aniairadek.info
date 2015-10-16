@@ -48,6 +48,7 @@ class RSVPEntry(db.Model):
     modified = db.Column(db.DateTime, nullable=False, server_default=func.now(), onupdate=func.now())
     food_message = db.Column(db.Text, index=False, unique=False)
     address = db.Column(db.Text, index=False, unique=False)
+    # A rsvp email sent would be nice.. but an entry means it has been sent...
 
     def __init__(self, names, email, attending=True, no_guests=0, is_active=False, food_message="", address=""):
         self.names = names
@@ -74,6 +75,20 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
 
+@rsvp_app.route('/send_rsvp_emails', methods=['GET'])
+def send_rsvps():
+    """Local use, sends emails to everyone"""
+    users = RSVPEntry.query.all()
+    for u in users:
+
+        html_email = render_template("rsvp_email.html", no_guests=u.no_guests, names=u.names,
+                                     food_message=u.food_message,
+                                     email=u.email.replace('+', '%2B'))  # url encode
+        txt_email = render_template("rsvp_email.txt", no_guests=u.no_guests, names=u.names,
+                                    food_message=u.food_message,
+                                    email=u.email)
+
+        send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
