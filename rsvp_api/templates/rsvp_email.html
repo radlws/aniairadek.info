@@ -537,7 +537,7 @@
                                                                     Ania i Radek - May 21st 2016</h2>
 
                                                                 <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
-                                                                    An RSVP has been made for {{ names }}. For {{ no_guests }}. We received your special notes: {{ food_message }}. We thank you for celebrating with us on one of the most joyful days of our life.
+                                                                    An RSVP has been made for {{ names }}. For {{ no_guests }}. {% if food_message %}We received your special notes: {{ food_message }}. {% endif %}We thank you for celebrating with us on one of the most joyful days of our life.
                                                                 </div>
                                                             </td>
                                                         </tr>
