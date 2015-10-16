@@ -70,7 +70,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
     mail.send(msg)
 
 # CONSTANTS .. move to config
-FROM_EMAIL = "do-not-reply@radtek.dev"
+FROM_EMAIL = "do-not-reply@aniairadek.info"
 ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
