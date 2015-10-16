@@ -81,7 +81,7 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 #     return 'Hello World!'
 
 
-@rsvp_app.route('/test_email')
+@rsvp_app.route('/test_email', methods=['POST', 'GET'])
 def test_template():
     logging.info("This is a test...")
     no_guests = 1
@@ -154,7 +154,7 @@ def post_rsvp():
 def page_not_found(e):
     # u = request.url_rule
     # return "this page not found %s" % u.rule, 404
-    return 'this page not found', 404
+    return 'This page was not found', 404
     # return flask.redirect('http://aniairadek.info', code=302)
     # return redirect(url_for('hello_world'))
 
