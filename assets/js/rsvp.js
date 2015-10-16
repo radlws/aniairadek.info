@@ -12,16 +12,18 @@ $(function() {
             var email = $("input#email").val();
             var attending = $("select#attending").val();
             var no_guests = $("select#no_guests").val();
-            //var phone = $("input#phone").val();
-            //var message = $("textarea#message").val();
-
+            // var phone = $("input#phone").val();
+            var address = $("input#address").val();
+            var food_message = $("input#food_message").val();
+            // var message = $("textarea#message").val();
+            
             //var firstName = name; // For Success/Failure Message
             //// Check for white space in name for Success/Fail message
             //if (firstName.indexOf(' ') >= 0) {
             //    firstName = name.split(' ').slice(0, -1).join(' ');
             //}
 
-            var data_arr = {name: name, email: email, attending: attending, no_guests: no_guests};
+            var data_arr = {name: name, email: email, attending: attending, no_guests: no_guests, address: address, food_message: food_message};
 
             $.ajax({
                 //url: "/api",
