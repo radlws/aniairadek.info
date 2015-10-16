@@ -81,20 +81,43 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 #     return 'Hello World!'
 
 
-@rsvp_app.route('/test_email', methods=['POST', 'GET'])
-def test_template():
-    logging.info("This is a test...")
-    no_guests = 1
-    names = "Radek, Bartek, Ania, Michal"
-    food_message = "I'm a veggie"
-    email = ADMIN_EMAILS[0]
-    html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message)
-    txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message)
+@rsvp_app.route('/api/confirm', methods=['GET'])
+def get_confirm():
+    email = request.args.get('email')
+    success = True
+    if not email or not validate_email(email):
+        message = "Sorry, the email specified was not valid."
+        success = False
+    else:
+        rsvp = RSVPEntry.query.filter_by(email=email).first()
+        if not rsvp:
+            message = "Sorry, the RSVP you are looking for was not found."
+            success = False
+        elif rsvp.is_active:
+            message = "RSVP was already confirmed."
+            success = False
+        else:
+            rsvp.is_active = True
+            db.session.commit()
+            message = "RSVP confirmed!"
+    msg = Message("RSVP Request Confirmed", sender=FROM_EMAIL,  body="By {0}".format(email), recipients=ADMIN_EMAILS, )
+    mail.send(msg)  # user = RSVPEntry.query.get(5)  # get by id
+    return render_template("thank_you.html", success=success, message=message)
 
-    send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
-    # send_email("This is a test", FROM_EMAIL, ADMIN_EMAILS, render_template("rsvp_email.txt", name="this is a test"),
-    #            render_template("rsvp_email.html", name="this is a test", follower="ok"))
-    return 'good'
+# @rsvp_app.route('/test_email', methods=['POST', 'GET'])
+# def test_template():
+#     logging.info("This is a test...")
+#     no_guests = 1
+#     names = "Radek, Bartek, Ania, Michal"
+#     food_message = "I'm a veggie"
+#     email = ADMIN_EMAILS[0]
+#     html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message)
+#     txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message)
+#
+#     send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
+#     # send_email("This is a test", FROM_EMAIL, ADMIN_EMAILS, render_template("rsvp_email.txt", name="this is a test"),
+#     #            render_template("rsvp_email.html", name="this is a test", follower="ok"))
+#     return 'good'
 
 @rsvp_app.route('/api', methods=['POST'])
 def post_rsvp():
@@ -136,8 +159,10 @@ def post_rsvp():
         msg = Message("RSVP Request", sender=FROM_EMAIL,  body=body, recipients=ADMIN_EMAILS, )
         mail.send(msg)
 
-        html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message)
-        txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message)
+        html_email = render_template("rsvp_email.html", no_guests=no_guests, names=names, food_message=food_message,
+                                     email=email)
+        txt_email = render_template("rsvp_email.txt", no_guests=no_guests, names=names, food_message=food_message,
+                                    email=email)
 
         send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
 
