@@ -283,9 +283,7 @@
             text-decoration: none !important;
         }
 
-        /* A nice and clean way to target phone numbers you want clickable and avoid a mobile phone from linking other numbers that look like, but are not phone numbers.  Use these two blocks of code to "unstyle" any numbers that may be linked.  The second block gives you a class to apply with a span tag to the numbers you would like linked and styled.
-        Inspired by Campaign Monitor's article on using phone numbers in email: http://www.campaignmonitor.com/blog/post/3571/using-phone-numbers-in-html-email/.
-        */
+
         .a[href^="tel"], a[href^="sms"] {
             text-decoration: none !important;
             color: #606060 !important;
@@ -409,16 +407,7 @@
 
         /* end IOS targeting */
     </style>
-    <!--
-        Outlook Conditional CSS
 
-        These two style blocks target Outlook 2007 & 2010 specifically, forcing
-        columns into a single vertical stack as on mobile clients. This is
-        primarily done to avoid the 'page break bug' and is optional.
-
-        More information here:
-        http://templates.mailchimp.com/development/css/outlook-conditional-css
-    -->
     <!--[if mso 12]>
     <style type="text/css">
         .flexibleContainer {
@@ -466,16 +455,7 @@
                                                     <table align="left" border="0" cellpadding="0" cellspacing="0"
                                                            width="100%">
                                                         <tr>
-                                                            <!--
-                                                                The "invisibleIntroduction" is the text used for short preview
-                                                                of the email before the user opens it (50 characters max). Sometimes,
-                                                                you do not want to show this message depending on your design but this
-                                                                text is highly recommended.
-
-                                                                You do not have to worry if it is hidden, the next <td> will automatically
-                                                                center and apply to the width 100% and also shrink to 50% if the first <td>
-                                                                is visible.
-                                                            -->
+                  \
                                                             <td align="left" valign="middle" id="invisibleIntroduction"
                                                                 class="flexibleContainerBox"
                                                                 style="display:none !important; mso-hide:all;">
@@ -525,38 +505,21 @@
                 <!-- // END -->
 
                 <!-- EMAIL BODY // -->
-                <!--
-                    The table "emailBody" is the email's container.
-                    Its width can be set to 100% for a color band
-                    that spans the width of the page.
-                -->
+
                 <table bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" width="500" id="emailBody">
 
                     <!-- MODULE ROW // -->
-                    <!--
-                        To move or duplicate any of the design patterns
-                        in this email, simply move or copy the entire
-                        MODULE ROW section for each content block.
-                    -->
+
                     <tr>
                         <td align="center" valign="top">
                             <!-- CENTERING TABLE // -->
-                            <!--
-                                The centering table keeps the content
-                                tables centered in the emailBody table,
-                                in case its width is set to 100%.
-                            -->
+
                             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="color:#FFFFFF;"
                                    bgcolor="#3498db">
                                 <tr>
                                     <td align="center" valign="top">
                                         <!-- FLEXIBLE CONTAINER // -->
-                                        <!--
-                                            The flexible container has a set width
-                                            that gets overridden by the media query.
-                                            Most content tables within can then be
-                                            given 100% widths.
-                                        -->
+
                                         <table border="0" cellpadding="0" cellspacing="0" width="500"
                                                class="flexibleContainer">
                                             <tr>
@@ -564,11 +527,7 @@
                                                     class="flexibleContainerCell">
 
                                                     <!-- CONTENT TABLE // -->
-                                                    <!--
-                                                    The content table is the first element
-                                                        that's entirely separate from the structural
-                                                        framework of the email.
-                                                    -->
+
                                                     <table border="0" cellpadding="30" cellspacing="0" width="100%">
                                                         <tr>
                                                             <td align="center" valign="top" class="textContent" style="background-color: #AD64AA;">
@@ -579,7 +538,7 @@
                                                                     Ania i Radek - May 21st 2016</h2>
 
                                                                 <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
-                                                                    An RSVP has been made for {{ names }}. For {{ no_guests }}. We received your special notes: {{ food_message }}. We thank you for celebrating with us on one of the most joyful days of our relationship.
+                                                                    An RSVP has been made for {{ names }}. For {{ no_guests }}. We received your special notes: {{ food_message }}. We thank you for celebrating with us on one of the most joyful days of our life.
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -600,10 +559,7 @@
 
 
                     <!-- MODULE ROW // -->
-                    <!--  The "mc:hideable" is a feature for MailChimp which allows
-                        you to disable certain row. It works perfectly for our row structure.
-                        http://kb.mailchimp.com/article/template-language-creating-editable-content-areas/
-                    -->
+
                     <tr mc:hideable>
                         <td align="center" valign="top">
                             <!-- CENTERING TABLE // -->
@@ -624,38 +580,7 @@
                                                                  style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
                                                                 Please confirm your RSVP by following the link below.
                                                             </div>
-                                                            <!--<td align="left" valign="top" class="flexibleContainerBox">-->
-                                                                <!--<table border="0" cellpadding="0" cellspacing="0"-->
-                                                                       <!--width="210" style="max-width: 100%;">-->
-                                                                    <!--<tr>-->
-                                                                        <!--<td align="left" class="textContent">-->
-                                                                            <!--<h3 style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">-->
-                                                                                <!--Left Column</h3>-->
 
-                                                                            <!--<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">-->
-                                                                                <!--TODO-->
-                                                                            <!--</div>-->
-                                                                        <!--</td>-->
-                                                                    <!--</tr>-->
-                                                                <!--</table>-->
-                                                            <!--</td>-->
-                                                            <!--<td align="right" valign="middle"-->
-                                                                <!--class="flexibleContainerBox">-->
-                                                                <!--<table class="flexibleContainerBoxNext" border="0"-->
-                                                                       <!--cellpadding="0" cellspacing="0" width="210"-->
-                                                                       <!--style="max-width: 100%;">-->
-                                                                    <!--<tr>-->
-                                                                        <!--<td align="left" class="textContent">-->
-                                                                            <!--<h3 style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">-->
-                                                                                <!--Right Column</h3>-->
-
-                                                                            <!--<div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">-->
-                                                                                <!--TODO-->
-                                                                            <!--</div>-->
-                                                                        <!--</td>-->
-                                                                    <!--</tr>-->
-                                                                <!--</table>-->
-                                                            <!--</td>-->
                                                         </tr>
                                                     </table>
                                                     <!-- // CONTENT TABLE -->
@@ -694,7 +619,7 @@
                                                             <td align="center" valign="middle" class="buttonContent"
                                                                 style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
                                                                 <a style="color:#FFFFFF;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:135%;"
-                                                                   href="/api/confirm?email={{ email }}" target="_blank">Confirm RSVP</a>
+                                                                   href="http://www.aniairadek.info/api/confirm?email={{ email }}" target="_blank">Confirm RSVP</a>
                                                                 <!-- http://www.aniairadek.info/api/confirm -->
                                                             </td>
                                                         </tr>
@@ -747,7 +672,7 @@
 
                                                                             <div mc:edit="body"
                                                                                  style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                                We have received your RSVP confirmation and will be sending you save the date and eVite (electronic Invite) emails soon.
+                                                                                Once we have received your RSVP confirmation, we will be sending you a eVite (electronic Invite) email in the not too distant future.
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -832,10 +757,10 @@
                                                                     <tr>
                                                                         <td valign="top" class="textContent">
                                                                             <h3 style="color:#5F5F5F;line-height:125%;font-family:Helvetica,Arial,sans-serif;font-size:20px;font-weight:normal;margin-top:0;margin-bottom:3px;text-align:left;">
-                                                                                What to do next?</h3>
+                                                                                Save the Date! What's Next?</h3>
 
                                                                             <div style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;">
-                                                                                Please wait for emails containing details to follow and check back the website soon, <a class="purple-link" href="http://www.aniairadek.info" target="_blank">www.aniairadek.info</a>.
+                                                                                Please wait for emails containing details to follow and visit the website for coming updates, <a class="purple-link" href="http://www.aniairadek.info" target="_blank">www.aniairadek.info</a>.
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -948,7 +873,7 @@
                                                                     <tr>
                                                                         <td valign="top" class="textContent">
                                                                             <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;margin-top:3px;color:#5F5F5F;line-height:135%;">
-                                                                                We are looking forward to seeing you!
+                                                                                We are looking forward to seeing you soon!
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -1006,7 +931,7 @@
                                                                 <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;">
                                                                     <div>Copyright &#169; 2015 <a
                                                                             href="http://www.radtek.ca"
-                                                                            style="text-decoration:none;color:#828282;"><span
+                                                                            style="text-decoration:none; border: none; color:#828282;"><span
                                                                             style="color:#828282;">Radtek</span></a>.
                                                                         All&nbsp;rights&nbsp;reserved.
                                                                     </div>
