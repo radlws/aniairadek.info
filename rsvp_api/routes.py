@@ -1,3 +1,4 @@
+"""rsvp api, keep py 2.6x compatible"""
 import logging
 import os
 
