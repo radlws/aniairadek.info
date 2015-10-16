@@ -3,3 +3,4 @@
 *.pyc
 #rsvp.db
 settings_local.py
+rsvp.db
