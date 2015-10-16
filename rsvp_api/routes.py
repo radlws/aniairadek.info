@@ -29,7 +29,7 @@ db = SQLAlchemy(rsvp_app)
 
 logging.basicConfig(filename='/tmp/aniairadek.log',
                     level=logging.INFO,
-                    format=('%(asctime)s %(name)s@{}[%(process)d] '.format(os.getenv('HOSTNAME')) +
+                    format=('%(asctime)s %(name)s@{0}[%(process)d] '.format(os.getenv('HOSTNAME')) +
                             '%(levelname)-8s %(message)s' + '    [in %(pathname)s:%(funcName)s:%(lineno)d]'),
                     datefmt='%m-%d %H:%M')
 
