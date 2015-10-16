@@ -83,7 +83,7 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
-    email = request.args.get('email', '').replace('%20', '+')
+    email = request.args.get('email', '') # .replace('%20', '+')
     success = True
     if not email or not validate_email(email):
         message = "Sorry, the email specified was not valid. {0}".format(email)
