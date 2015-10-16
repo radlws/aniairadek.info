@@ -80,15 +80,14 @@ def send_rsvps():
     """Local use, sends emails to everyone"""
     users = RSVPEntry.query.all()
     for u in users:
-
-        html_email = render_template("rsvp_email.html", no_guests=u.no_guests, names=u.names,
-                                     food_message=u.food_message,
-                                     email=u.email.replace('+', '%2B'))  # url encode
-        txt_email = render_template("rsvp_email.txt", no_guests=u.no_guests, names=u.names,
-                                    food_message=u.food_message,
-                                    email=u.email)
-
-        send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
+        if not u.is_active:
+            html_email = render_template("rsvp_email.html", no_guests=u.no_guests, names=u.names,
+                                         food_message=u.food_message,
+                                         email=u.email.replace('+', '%2B'))  # url encode
+            txt_email = render_template("rsvp_email.txt", no_guests=u.no_guests, names=u.names,
+                                        food_message=u.food_message,
+                                        email=u.email)
+            send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
