@@ -79,6 +79,7 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 def send_rsvps():
     """Local use, sends emails to everyone"""
     users = RSVPEntry.query.all()
+    sent_to = ""
     for u in users:
         if not u.is_active:
             html_email = render_template("rsvp_email.html", no_guests=u.no_guests, names=u.names,
@@ -88,9 +89,10 @@ def send_rsvps():
                                         food_message=u.food_message,
                                         email=u.email)
             logging.info("Attempting to send email to {0}".format(u.email))
+            sent_to += u.email + " "
             send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
-    return jsonify(success=True, msg="RSVPs all sent")
+    return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
