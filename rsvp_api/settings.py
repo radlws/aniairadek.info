@@ -4,7 +4,7 @@
 # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'rsvp.db')
 # SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 #
-# try:
-#     from settings_local import *
-# except ImportError:
-#     pass
+try:
+    from settings_local import *
+except ImportError:
+    pass
