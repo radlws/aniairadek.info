@@ -15,7 +15,27 @@ from validate_email import validate_email
 from flask import render_template
 
 rsvp_app = Flask(__name__)
-# rsvp_app.config.from_object('settings')  # Load from settings.py module
+
+# Does not work for email settings, dunno why
+#rsvp_app.config.from_object('settings')  # Load from settings.py module
+
+try:
+    from settings_local import MAIL_SERVER
+    from settings_local import MAIL_PORT
+    from settings_local import MAIL_USE_TLS
+    from settings_local import MAIL_USERNAME
+    from settings_local import MAIL_PASSWORD
+    from settings_local import DEFAULT_MAIL_SENDER
+except ImportError:
+    pass
+
+rsvp_app.config['MAIL_SERVER'] = MAIL_SERVER
+rsvp_app.config['MAIL_PORT'] = MAIL_PORT
+rsvp_app.config['MAIL_USE_TLS'] = MAIL_USE_TLS
+rsvp_app.config['MAIL_USERNAME'] = MAIL_USERNAME
+rsvp_app.config['MAIL_PASSWORD'] = MAIL_PASSWORD
+rsvp_app.config['DEFAULT_MAIL_SENDER'] = DEFAULT_MAIL_SENDER
+
 mail = Mail(rsvp_app)
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -71,7 +91,7 @@ def send_email(subject, sender, recipients, text_body, html_body):
     mail.send(msg)
 
 # CONSTANTS .. move to config
-FROM_EMAIL = "do-not-reply@aniairadek.info"
+FROM_EMAIL = "do-not-reply@aniairadek.info" # 'radtek.do.not.reply@gmail.com'  # "do-not-reply@aniairadek.info"
 ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
@@ -115,6 +135,7 @@ def get_confirm():
             message = "RSVP confirmed!"
     msg = Message("RSVP Request Confirmed", sender=FROM_EMAIL,  body="By {0}".format(email), recipients=ADMIN_EMAILS, )
     mail.send(msg)  # user = RSVPEntry.query.get(5)  # get by id
+    # TODO: Send invite email
     return render_template("thank_you.html", success=success, message=message)
 
 
@@ -168,7 +189,7 @@ def post_rsvp():
 
     except Exception as e:
         logging.error("Something went wrong while sending emails {0}".format(e))
-
+    logging.info("Created and sent rsvp email to {0}".format(email))
     return jsonify(success=True, msg="RSVP created successfully")
 
 
