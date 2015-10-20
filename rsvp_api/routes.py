@@ -122,19 +122,19 @@ def send_rsvps():
 @rsvp_app.route('/send_invite_emails', methods=['GET'])
 def send_invites():
     """Local use, sends emails to everyone"""
-    #emails = request.args.getlist('email')
+    emails = request.args.getlist('email')
     # for email in emails; print email
-    emails = [
-        {"name": "Rad W", "email": "radzhome@gmail.com"},
-        {"name": "Radz Ww", "email": "radzhome@hotmail.com"},
-        ]
+    # emails = [
+    #     {"name": "Rad W", "email": "radzhome@gmail.com"},
+    #     {"name": "Radz Ww", "email": "radzhome@domain.com"},
+    #     ]
     sent_to = ''
-    for u in emails:
-        html_email = render_template("invite_email.html", name=u['name'])  # url encode
-        txt_email = render_template("invite_email.txt", name=u['name'])
-        logging.info("Attempting to send email to {0}".format(u['email']))
-        sent_to += u['email'] + " "
-        send_email("Thank you for RSVPing", FROM_EMAIL, [u['email'], ], txt_email, html_email)
+    for email in emails:
+        html_email = render_template("invite_email.html")  # , name=u['name'])  # url encode
+        txt_email = render_template("invite_email.txt")  # , name=u['name'])
+        logging.info("Attempting to send email to {0}".format(email))
+        sent_to += email + " "
+        send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
 
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
