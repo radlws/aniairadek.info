@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="format-detection" content="telephone=no"/>
     <!-- disable auto telephone linking in iOS -->
-    <title>RSVP to Ania & Radek's Wedding Celebration</title>
+    <title>Ania & Radek's Wedding Invitation</title>
     <style type="text/css">
         /* RESET STYLES */
         html {
@@ -306,14 +306,7 @@
                 min-width: 100% !important;
             }
 
-            /* Force iOS Mail to render the email at full width. */
-            /* FRAMEWORK STYLES */
-            /*
-            CSS selectors are written in attribute
-            selector format to prevent Yahoo Mail
-            from rendering media query styles on
-            desktop.
-            */
+
             /*td[class="textContent"], td[class="flexibleContainerCell"] { width: 100%; padding-left: 10px !important; padding-right: 10px !important; }*/
             table[id="emailHeader"],
             table[id="emailBody"],
@@ -329,14 +322,6 @@
                 text-align: left;
             }
 
-            /*
-            The following style rule makes any
-            image classed with 'flexibleImage'
-            fluid when the query activates.
-            Make sure you add an inline max-width
-            to those images to prevent them
-            from blowing out.
-            */
             td[class="imageContent"] img {
                 height: auto !important;
                 width: 100% !important;
@@ -361,11 +346,6 @@
                 padding-top: 10px !important;
             }
 
-            /*
-            Make buttons in the email span the
-            full width of their container, allowing
-            for left- or right-handed ease of use.
-            */
             table[class="emailButton"] {
                 width: 100% !important;
             }
@@ -463,7 +443,7 @@
                                                                     <tr>
                                                                         <td align="left" class="textContent" >
                                                                             <div style="font-family:Helvetica,Arial,sans-serif;font-size:13px;color:#828282;text-align:center;line-height:120%;">
-                                                                                Thank you for your RSVP to our wedding celebration!
+                                                                                Wedding Invitation
                                                                             </div>
                                                                         </td>
                                                                     </tr>
@@ -531,13 +511,21 @@
                                                         <tr>
                                                             <td align="center" valign="top" class="textContent" style="background-color: #AD64AA;">
                                                                 <h1 style="color:#FFFFFF;line-height:100%;font-family:Helvetica,Arial,sans-serif;font-size:35px;font-weight:normal;margin-bottom:5px;text-align:center;">
-                                                                    Thank You for your RSVP</h1>
+                                                                    Wedding Invitation
+                                                                </h1>
 
                                                                 <h2 style="text-align:center;font-weight:normal;font-family:Helvetica,Arial,sans-serif;font-size:23px;margin-bottom:10px;color:#e8c4e7;line-height:135%;">
-                                                                    Ania i Radek - May 21st 2016</h2>
+                                                                    Ania i Radek - May 21st 2016
+                                                                </h2>
 
                                                                 <div style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#FFFFFF;line-height:135%;">
-                                                                    An RSVP has been made for {{ names }}. For {{ no_guests }}. {% if food_message %}We received your special notes: {{ food_message }}. {% endif %}We thank you for celebrating with us on one of the most joyful days of our life.
+                                                                    <p style="text-align:left;">Dear Guest,</p>
+                                                                    The honor of your presence
+                                                                    is requested at the marriage of
+                                                                    Ania K. Balcerzak to Radek K. Wojcik
+                                                                    Saturday, the twenty first of May two thousand and sixteen
+                                                                    at twelve in the noon at St. Stanislaus Kostka Church at 8 Saint Ann St, Hamilton, ON.
+                                                                    Reception to follow at five in the afternoon at Grand Olympia Banquet at 660 Barton St, Stoney Creek, ON.
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -577,7 +565,7 @@
                                                         <tr>
                                                             <div mc:edit="body"
                                                                  style="text-align:center;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                Please confirm your RSVP by following the link below.
+                                                                Please RSVP by following the link below.
                                                             </div>
 
                                                         </tr>
@@ -618,7 +606,7 @@
                                                             <td align="center" valign="middle" class="buttonContent"
                                                                 style="padding-top:15px;padding-bottom:15px;padding-right:15px;padding-left:15px;">
                                                                 <a style="color:#FFFFFF;text-decoration:none;font-family:Helvetica,Arial,sans-serif;font-size:20px;line-height:135%;"
-                                                                   href="http://www.aniairadek.info/api/confirm?email={{ email }}" target="_blank">Confirm RSVP</a>
+                                                                   href="http://www.aniairadek.info/#rsvp" target="_blank">Create RSVP</a>
                                                                 <!-- http://www.aniairadek.info/api/confirm -->
                                                             </td>
                                                         </tr>
@@ -671,7 +659,7 @@
 
                                                                             <div mc:edit="body"
                                                                                  style="text-align:left;font-family:Helvetica,Arial,sans-serif;font-size:15px;margin-bottom:0;color:#5F5F5F;line-height:135%;">
-                                                                                Once we have received your RSVP confirmation, we will be sending you a eVite (electronic Invite) email in the not too distant future.
+                                                                                Once we have received your RSVP, we will be sending you a RSVP confirmation email.  Please confirm your RSVP once you receive it by following the instructions.
                                                                             </div>
                                                                         </td>
                                                                     </tr>
