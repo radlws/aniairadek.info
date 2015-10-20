@@ -1,1 +1,6 @@
-Use the html version. guests: {{ no_guests }}, names: {{ names }}, notes: {{ food_message }}, email: {{ email }}
+Use the html version please. Your details, guests: {{ no_guests }}, names: {{ names }}, notes: {{ food_message }}, email: {{ email }}
+
+
+Please confirm your RSVP by following the link below.
+
+Confirm RSVP (http://www.aniairadek.info/api/confirm?email={{ email }})

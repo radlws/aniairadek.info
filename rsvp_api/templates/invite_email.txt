@@ -1,1 +1,12 @@
-Use the html version. name: {{ name }}
+Wedding Invitation
+Ania i Radek - May 21st 2016
+
+Dear Guest,
+
+The honor of your presence is requested at the marriage of Ania K. Balcerzak to Radek K. Wojcik Saturday, the twenty first of May two thousand and sixteen at twelve in the noon at St. Stanislaus Kostka Church at 8 Saint Ann St, Hamilton, ON. Reception to follow at five in the afternoon at Grand Olympia Banquet at 660 Barton St, Stoney Creek, ON.
+Please RSVP by following the link below.
+
+Create RSVP (http://www.aniairadek.info/#rsvp)
+
+RSVP Confirmation
+Once we have received your RSVP, we will be sending you a RSVP confirmation email. Please confirm your RSVP once you receive it by following the instructions.
