@@ -27,7 +27,10 @@ try:
     from settings_local import MAIL_PASSWORD
     from settings_local import DEFAULT_MAIL_SENDER
 except ImportError:
-    pass
+    MAIL_SERVER = 'localhost'
+    MAIL_PORT = 25
+    MAIL_USE_TLS = False
+    MAIL_USERNAME = MAIL_PASSWORD = DEFAULT_MAIL_SENDER = None
 
 rsvp_app.config['MAIL_SERVER'] = MAIL_SERVER
 rsvp_app.config['MAIL_PORT'] = MAIL_PORT
@@ -115,6 +118,26 @@ def send_rsvps():
 
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
+
+@rsvp_app.route('/send_invite_emails', methods=['GET'])
+def send_invites():
+    """Local use, sends emails to everyone"""
+    #emails = request.args.getlist('email')
+    # for email in emails; print email
+    emails = [
+        {"name": "Rad W", "email": "radzhome@gmail.com"},
+        {"name": "Radz Ww", "email": "radzhome@hotmail.com"},
+        ]
+    sent_to = ''
+    for u in emails:
+        html_email = render_template("invite_email.html", name=u['name'])  # url encode
+        txt_email = render_template("invite_email.txt", name=u['name'])
+        logging.info("Attempting to send email to {0}".format(u['email']))
+        sent_to += u['email'] + " "
+        send_email("Thank you for RSVPing", FROM_EMAIL, [u['email'], ], txt_email, html_email)
+
+    return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
+
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
     email = request.args.get('email', '').replace('%2B', '+')  # %40 = @
@@ -135,7 +158,7 @@ def get_confirm():
             message = "RSVP confirmed!"
     msg = Message("RSVP Request Confirmed", sender=FROM_EMAIL,  body="By {0}".format(email), recipients=ADMIN_EMAILS, )
     mail.send(msg)  # user = RSVPEntry.query.get(5)  # get by id
-    # TODO: Send invite email
+    # Send invite email or no need...
     return render_template("thank_you.html", success=success, message=message)
 
 
