@@ -134,7 +134,7 @@ def send_invites():
         txt_email = render_template("invite_email.txt")  # , name=u['name'])
         logging.info("Attempting to send email to {0}".format(email))
         sent_to += email + " "
-        send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
+        send_email("Anna & Radek Wedding Invitation", FROM_EMAIL, [email, ], txt_email, html_email)
 
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
