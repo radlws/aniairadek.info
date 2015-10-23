@@ -128,6 +128,7 @@ def send_rsvps():
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
 
+# Using this route, makes everything time out at times, why??
 @rsvp_app.route('/send_invite_emails', methods=['GET'])
 def send_invites():
     """Local use, sends emails to everyone"""
