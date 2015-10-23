@@ -1,6 +1,6 @@
 # Ania i Radek
 
-Website for aniairadek.info
+Website for www.aniairadek.info
 
 
 Back-end:
@@ -10,3 +10,6 @@ Back-end:
 Front-end:
 - Bootstrap 3
 - jQuery
+
+
+TODO: Why times out when using get email view, taking too long, why?
