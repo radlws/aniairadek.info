@@ -99,6 +99,15 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
 
+@rsvp_app.route('/update_rsvp//<email>', methods=['GET', 'POST])
+def update_rsvp(email):
+    if request.method == 'GET':
+        pass
+    if request.method == 'POST':
+        pass
+    return 'todo template'
+    
+    
 @rsvp_app.route('/send_rsvp_emails', methods=['GET'])
 def send_rsvps():
     """Local use, sends emails to everyone"""
