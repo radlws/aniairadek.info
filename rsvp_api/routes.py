@@ -101,6 +101,13 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 # ROUTES
 
+@rsvp_app.route('/api/check')
+def lb_check():
+    """Performs check.
+    """
+    return 'running'
+
+
 @rsvp_app.route('/update_rsvp//<email>', methods=['GET', 'POST'])
 def update_rsvp(email):
     if request.method == 'GET':
