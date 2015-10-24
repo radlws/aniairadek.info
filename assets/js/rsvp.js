@@ -26,8 +26,7 @@ $(function() {
             var data_arr = {name: name, email: email, attending: attending, no_guests: no_guests, address: address, food_message: food_message};
 
             $.ajax({
-                //url: "/api",
-                url: "/api",
+                url: "/api/rsvp",
                 type: "POST",
                 data: JSON.stringify(data_arr),
                 cache: false,

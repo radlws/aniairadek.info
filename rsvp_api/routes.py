@@ -108,13 +108,13 @@ def lb_check():
     return 'running'
 
 
-@rsvp_app.route('/update_rsvp//<email>', methods=['GET', 'POST'])
-def update_rsvp(email):
-    if request.method == 'GET':
-        pass
-    if request.method == 'POST':
-        pass
-    return 'todo template'
+# @rsvp_app.route('/update_rsvp//<email>', methods=['GET', 'POST'])
+# def update_rsvp(email):
+#     if request.method == 'GET':
+#         pass
+#     if request.method == 'POST':
+#         pass
+#     return 'todo template'
     
     
 @rsvp_app.route('/send_rsvp_emails', methods=['GET'])
@@ -142,11 +142,7 @@ def send_rsvps():
 def send_invites():
     """Local use, sends emails to everyone"""
     emails = request.args.getlist('email')
-    # for email in emails; print email
-    # emails = [
-    #     {"name": "Rad W", "email": "radzhome@gmail.com"},
-    #     {"name": "Radz Ww", "email": "radzhome@domain.com"},
-    #     ]
+
     sent_to = ''
     for email in emails:
         html_email = render_template("invite_email.html")  # , name=u['name'])  # url encode
@@ -184,7 +180,7 @@ def get_confirm():
 
 
 
-@rsvp_app.route('/api/', methods=['POST'])  # Change to /api/rsvp
+@rsvp_app.route('/api/rsvp', methods=['POST'])  # Change to /api/rsvp
 def post_rsvp():
     logging.info("Entering post rsvp")
     data = request.get_json(force=True)
