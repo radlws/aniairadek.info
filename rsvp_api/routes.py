@@ -63,6 +63,7 @@ from sqlalchemy import func
 
 
 class RSVPEntry(db.Model):
+    
     id = db.Column(db.Integer, primary_key=True)
     no_guests = db.Column(db.Integer, unique=False, index=False)
     names = db.Column(db.String(255), index=False, unique=False)
@@ -99,16 +100,19 @@ def send_email(subject, sender, recipients, text_body, html_body):
 FROM_EMAIL = "do-not-reply@aniairadek.info" # 'radtek.do.not.reply@gmail.com'  # "do-not-reply@aniairadek.info"
 ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
+
+# TODO: login required views
+
 # ROUTES
 
 @rsvp_app.route('/api/check')
-def lb_check():
+def api_check():
     """Performs check.
     """
     return 'running'
 
 
-# @rsvp_app.route('/update_rsvp//<email>', methods=['GET', 'POST'])
+# @rsvp_app.route('/update_rsvp/<email>', methods=['GET', 'POST'])
 # def update_rsvp(email):
 #     if request.method == 'GET':
 #         pass
@@ -141,16 +145,22 @@ def send_rsvps():
 @rsvp_app.route('/send_invite_emails', methods=['GET'])
 def send_invites():
     """Local use, sends emails to everyone"""
-    emails = request.args.getlist('email')
+    
+    logging.info("Entering entering send invites")
+    
+    try:
+        emails = request.args.getlist('email')
 
-    sent_to = ''
-    for email in emails:
-        html_email = render_template("invite_email.html")  # , name=u['name'])  # url encode
-        txt_email = render_template("invite_email.txt")  # , name=u['name'])
-        logging.info("Attempting to send email to {0}".format(email))
-        sent_to += email + " "
-        send_email("Anna & Radek Wedding Invitation", FROM_EMAIL, [email, ], txt_email, html_email)
-
+        sent_to = ''
+        for email in emails:
+            html_email = render_template("invite_email.html")  # , name=u['name'])  # url encode
+            txt_email = render_template("invite_email.txt")  # , name=u['name'])
+            logging.info("Attempting to send email to {0}".format(email))
+            sent_to += email + " "
+            send_email("Anna & Radek Wedding Invitation", FROM_EMAIL, [email, ], txt_email, html_email)
+    except Exception as e:
+        logging.error("Something went wrong while sending invite emails {0} 10}".format(e.__class__, e))
+        
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
