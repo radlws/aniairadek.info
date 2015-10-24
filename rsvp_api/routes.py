@@ -1,5 +1,6 @@
 """rsvp api, keep py 2.6x compatible"""
 import logging
+import unicodedata
 import os
 
 from flask import Flask
@@ -122,7 +123,7 @@ def send_rsvps():
                                         food_message=u.food_message,
                                         email=u.email)
             logging.info("Attempting to send email to {0}".format(u.email))
-            sent_to += u.email + " "
+            sent_to += u.email + " "nicodedata.normalize('NFKD', u'Łyżwy').encode('ascii', 'ignore')
             send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
@@ -150,6 +151,8 @@ def send_invites():
 
 @rsvp_app.route('/api/confirm', methods=['GET'])
 def get_confirm():
+    logging.info("Entering entering get rsvp confirm")
+    
     email = request.args.get('email', '').replace('%2B', '+')  # %40 = @
     success = True
     if not email or not validate_email(email):
@@ -173,11 +176,13 @@ def get_confirm():
 
 
 
-@rsvp_app.route('/api', methods=['POST'])
+@rsvp_app.route('/api/', methods=['POST'])  # Change to /api/rsvp
 def post_rsvp():
     logging.info("Entering post rsvp")
     data = request.get_json(force=True)
 
+    # unicodedata.normalize('NFKD', value).encode('ascii', 'ignore')
+    
     email = data.get('email')
     if not email or not validate_email(email):
         return jsonify(msg="Sorry, please provide a valid email.", success=False)
@@ -190,7 +195,11 @@ def post_rsvp():
     
     address = data.get('address')
     food_message = data.get('food_message')
-
+    
+    address = unicodedata.normalize('NFKD', address).encode('ascii', 'ignore')
+    food_message = unicodedata.normalize('NFKD', food_message).encode('ascii', 'ignore')
+    names = unicodedata.normalize('NFKD', names).encode('ascii', 'ignore')
+    
     rsvp_entry = RSVPEntry(names=names, email=email, attending=attending, no_guests=no_guests, 
                            food_message=food_message, address=address)
                            
@@ -221,7 +230,7 @@ def post_rsvp():
         send_email("Thank you for RSVPing", FROM_EMAIL, [email, ], txt_email, html_email)
 
     except Exception as e:
-        logging.error("Something went wrong while sending emails {0}".format(e))
+        logging.error("Something went wrong while sending emails {0} 10}".format(e.__class__, e))
     logging.info("Created and sent rsvp email to {0}".format(email))
     return jsonify(success=True, msg="RSVP created successfully")
 
