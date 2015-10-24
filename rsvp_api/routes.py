@@ -124,7 +124,7 @@ def send_rsvps():
                                         food_message=u.food_message,
                                         email=u.email)
             logging.info("Attempting to send email to {0}".format(u.email))
-            sent_to += u.email + " "nicodedata.normalize('NFKD', u'Łyżwy').encode('ascii', 'ignore')
+            sent_to += u.email + " "
             send_email("Thank you for RSVPing", FROM_EMAIL, [u.email, ], txt_email, html_email)
 
     return jsonify(success=True, msg="RSVPs all sent to {0}".format(sent_to))
