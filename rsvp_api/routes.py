@@ -90,6 +90,7 @@ class RSVPEntry(db.Model):
 
 
 logging.info("Starting rsvp api")
+
 def send_email(subject, sender, recipients, text_body, html_body):
     msg = Message(subject, sender=sender, recipients=recipients)
     msg.body = text_body
@@ -107,8 +108,7 @@ ADMIN_EMAILS = ["radzhome@gmail.com", "annabkatarzyna@gmail.com"]
 
 @rsvp_app.route('/api/check')
 def api_check():
-    """Performs check.
-    """
+    """Performs check."""
     return 'running'
 
 
@@ -256,6 +256,7 @@ def page_not_found(e):
     return 'This page was not found', 404
     # return flask.redirect('http://aniairadek.info', code=302)
     # return redirect(url_for('hello_world'))
+
 
 if __name__ == '__main__':
     rsvp_app.run(debug=False)
