@@ -6,6 +6,7 @@ $(function() {
             // additional error messages or events
         },
         submitSuccess: function($form, event) {
+
             event.preventDefault(); // prevent default submit behaviour
             // get values from FORM
             var name = $("input#name").val();
@@ -25,6 +26,11 @@ $(function() {
 
             var data_arr = {name: name, email: email, attending: attending, no_guests: no_guests, address: address, food_message: food_message};
 
+            // Loading button
+            $(".btn-rsvp").prop('disabled', true);
+            $( ".loading-form" ).show();
+            $( ".btn-rsvp-text" ).hide();
+
             $.ajax({
                 url: "/api/rsvp",
                 type: "POST",
@@ -33,9 +39,10 @@ $(function() {
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function(response) {
-                    // Success message
 
+                    // Success message
                     if (response['success']) {
+
                         $('#success').html("<div class='alert alert-success'>");
                         $('#success > .alert-success').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                             .append("</button>");
@@ -43,6 +50,13 @@ $(function() {
                             .append("<strong>Your RSVP has been sent. </strong>");
                         $('#success > .alert-success')
                             .append('</div>');
+
+                        // Clear all fields
+                        $('#contactForm').trigger("reset");
+
+                        // Hide button
+                        $( ".btn-rsvp" ).hide();
+
                     } else {
 
                         $('#success').html("<div class='alert alert-danger'>");
@@ -50,10 +64,14 @@ $(function() {
                             .append("</button>");
                         $('#success > .alert-danger').append("<strong>" + response['msg'] + "</strong>");
                         $('#success > .alert-danger').append('</div>');
+
+                        // Enable button
+                        $( ".loading-form" ).hide();
+                        $( ".btn-rsvp-text" ).show();
+                        $(".btn-rsvp").prop('disabled', false);
                     }
 
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
+
                 },
                 error: function() {
                     // Fail message
@@ -62,8 +80,12 @@ $(function() {
                         .append("</button>");
                     $('#success > .alert-danger').append("<strong>Sorry , it seems that my mail server is not responding. Please try again later!</strong>");
                     $('#success > .alert-danger').append('</div>');
-                    //clear all fields
-                    $('#contactForm').trigger("reset");
+
+                    // Enable button
+                    $( ".loading-form" ).hide();
+                    $( ".btn-rsvp-text" ).show();
+                    $(".btn-rsvp").prop('disabled', false);
+
                 }
             })
         },

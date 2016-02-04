@@ -996,3 +996,15 @@ section h3.section-subheading.text-muted{
 .padding-bottom-20{
     padding-bottom: 20px;
 }
+
+.loading-form{
+    height: 42px;
+    width: 42px;
+    background-image: url("../../img/loading.gif");
+    /*display: inline-block;*/
+    display: none;
+}
+
+.done-form{
+    display: none;
+}
