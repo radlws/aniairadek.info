@@ -55,7 +55,11 @@ $(function() {
                         $('#contactForm').trigger("reset");
 
                         // Hide button
-                        $( ".btn-rsvp" ).hide();
+                        // $( ".btn-rsvp" ).hide();
+
+                        // Update button message
+                        $( ".done-form" ).show();
+                        $( ".loading-form" ).hide();
 
                     } else {
 
