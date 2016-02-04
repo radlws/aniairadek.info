@@ -11,5 +11,3 @@ Front-end:
 - Bootstrap 3
 - jQuery
 
-
-TODO: Why times out when using get email view, taking too long, why?
