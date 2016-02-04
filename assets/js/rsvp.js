@@ -58,12 +58,21 @@ $(function() {
                         // $( ".btn-rsvp" ).hide();
 
                         // Update button message
-                        $( ".done-form" ).show();
-                        $( ".loading-form" ).hide();
+                        $(".done-form").show();
+                        $(".loading-form").hide();
 
                         // Hide the form
-                        $( ".rsvp-form-left" ).hide();
-                        $( ".rsvp-form-right" ).hide();
+                        //$( ".rsvp-form-left").hide();
+                        //$( ".rsvp-form-right").hide();
+
+                        // Enable button after sometime
+                        setTimeout(
+                          function()
+                          {
+                             $(".loading-form").hide();
+                            $(".btn-rsvp-text").show();
+                            $(".btn-rsvp").prop('disabled', false);
+                          }, 5000);
 
                     } else {
 
@@ -74,8 +83,8 @@ $(function() {
                         $('#success > .alert-danger').append('</div>');
 
                         // Enable button
-                        $( ".loading-form" ).hide();
-                        $( ".btn-rsvp-text" ).show();
+                        $(".loading-form").hide();
+                        $(".btn-rsvp-text").show();
                         $(".btn-rsvp").prop('disabled', false);
                     }
 
