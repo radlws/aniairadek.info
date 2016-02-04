@@ -68,8 +68,7 @@ $(function() {
                         // Enable button after sometime
                         setTimeout(
                           function()
-                          {
-                             $(".loading-form").hide();
+                          { $(".loading-form").hide();
                             $(".btn-rsvp-text").show();
                             $(".btn-rsvp").prop('disabled', false);
                           }, 5000);
@@ -85,6 +84,7 @@ $(function() {
                         // Enable button
                         $(".loading-form").hide();
                         $(".btn-rsvp-text").show();
+                        $(".done-form").hide();
                         $(".btn-rsvp").prop('disabled', false);
                     }
 
@@ -99,8 +99,9 @@ $(function() {
                     $('#success > .alert-danger').append('</div>');
 
                     // Enable button
-                    $( ".loading-form" ).hide();
-                    $( ".btn-rsvp-text" ).show();
+                    $(".loading-form").hide();
+                    $(".btn-rsvp-text").show();
+                    $(".done-form").hide();
                     $(".btn-rsvp").prop('disabled', false);
 
                 }
