@@ -61,6 +61,10 @@ $(function() {
                         $( ".done-form" ).show();
                         $( ".loading-form" ).hide();
 
+                        // Hide the form
+                        $( ".rsvp-form-left" ).hide();
+                        $( ".rsvp-form-right" ).hide();
+
                     } else {
 
                         $('#success').html("<div class='alert alert-danger'>");
