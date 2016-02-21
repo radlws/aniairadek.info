@@ -121,7 +121,7 @@ def api_check():
 #     return 'todo template'
     
     
-@rsvp_app.route('/send_rsvp_emails', methods=['GET'])
+@rsvp_app.route('/api/send_rsvp_emails', methods=['GET'])
 def send_rsvps():
     """Local use, sends emails to everyone"""
     users = RSVPEntry.query.all()
@@ -142,7 +142,7 @@ def send_rsvps():
 
 
 # Using this route, makes everything time out at times, why??
-@rsvp_app.route('/send_invite_emails', methods=['GET'])
+@rsvp_app.route('/api/send_invite_emails', methods=['GET'])
 def send_invites():
     """Local use, sends emails to everyone"""
     
